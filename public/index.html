@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="StyleIndex.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Lista para Personalizadas</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="containerList">
+            <h2 class="title">JUGADORES</h2>
+            <div class="listPlayers">
+                <ul class="nameList" id="lista-usuarios">
+
+                </ul>
+            </div>
+            <div class="containerFooter">
+                <h2>Conectados: <span id="current-count">0</span>/<span id="max-count">20</span></h2>
+            </div>
+        </div>
+
+        <div class="containerBanner">
+            <h3 class="textBanner">MAPA ALEATORIO</h3>
+            <img class="ImageMap" src="./images/Lotus.webp" alt="MapImage" id="ImageMap">
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        var socket = io();
+
+        socket.on('userAdded', (data) => {
+            const user = data;
+            const listaUsuariosHTML = document.getElementById('lista-usuarios');
+            const li = document.createElement('li');
+            li.textContent = user;
+            listaUsuariosHTML.appendChild(li);
+        });
+
+        socket.on('userDelete', (data) => {
+            const user = data;
+            const listaUsuariosHTML = document.getElementById('lista-usuarios');
+            const usuarios = listaUsuariosHTML.getElementsByTagName('li');
+            for (let i = 0; i < usuarios.length; i++) {
+                if (usuarios[i].textContent === user) {
+                    listaUsuariosHTML.removeChild(usuarios[i]);
+                    break;
+                }
+            }
+        });
+
+        socket.on('resetList', () => {
+            const listaUsuariosHTML = document.getElementById('lista-usuarios');
+            listaUsuariosHTML.innerHTML = '';
+        });
+
+        socket.on('getListCount', (data) => {
+            const currentCount = data.currentCount;
+            const maxCount = data.maxCount;
+
+            document.getElementById('current-count').textContent = currentCount;
+            document.getElementById('max-count').textContent = maxCount;
+        });
+
+        socket.on('randomMap', (data) => {
+            const mapImage = document.getElementById('ImageMap');
+            mapImage.src = "./images/" + data.imageFormat;
+            mapImage.alt = data.nameMap;
+        });
+    </script>
+</body>
+</html>

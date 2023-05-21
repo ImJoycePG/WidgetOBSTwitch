@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+html {
+    box-sizing: border-box; 
+    background:brown;
+    content: '';
+}
+
+
+.container {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+}
+
+.containerList {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    background: linear-gradient(135deg, black , #292929);
+}
+
+.listPlayers {
+    height: 95%;
+    columns: 2;
+    margin: 2rem;
+}
+
+.containerFooter {
+    
+    width: 100%;
+    height: 5%;
+    color: white;
+    text-align: center;
+}
+
+.containerList h2.title {
+    color: white;
+    font-weight: bold;
+    font-size: 2.2rem;
+    text-decoration: underline white 2px;
+    text-underline-offset: 1rem;
+    margin: 1.5rem;
+}
+
+.listPlayers ul.nameList {
+    list-style-type: none;
+    font-size: 20px;
+    color: white;
+}
+
+.containerList li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.containerBanner {
+    width: 30%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+}
+
+.containerBanner h3.textBanner {
+    color: white;
+    position: absolute;
+    font-size: 25px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  
+}
+
+.containerBanner img {
+    height: 100%;
+}
+
+@media screen and (min-width: 1080px){
+
+    body{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    .title {
+        align-self: top;
+        color: white;
+        font-weight: bold;
+        font-size: 2.5rem;
+        text-decoration: underline white 2px;
+        text-underline-offset: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .containerList {
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+        padding-top: 4%;
+        padding-left: 4%;
+    }
+    
+    .nameList {
+        list-style-type: none;
+        color: white;
+    }
+    
+    .nameList li {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .other {
+        display: flex;
+        justify-content: center;
+        align-self: flex-end;
+        color: white;
+    }
+    
+    .containerBanner {
+        display: flex;
+        justify-content: center;
+        background-image: url("images/valorant.png");
+        align-self: right;
+        width: 25%;
+        height: 100%;
+    }
+    
+    .match {
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        writing-mode: sideways-lr;
+        padding-bottom: 10%;
+    }
+}
